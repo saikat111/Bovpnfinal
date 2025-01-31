@@ -3,7 +3,7 @@
   "info": {
     "title": "Bovpn API",
     "version": "1.0.0",
-    "description": "APIs for user registration, login, profile management, and subscription management"
+    "description": "APIs for user registration, login, profile management, subscription management, and server management"
   },
   "servers": [
     {
@@ -22,15 +22,9 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "username": {
-                    "type": "string"
-                  },
-                  "email": {
-                    "type": "string"
-                  },
-                  "password": {
-                    "type": "string"
-                  }
+                  "username": { "type": "string" },
+                  "email": { "type": "string" },
+                  "password": { "type": "string" }
                 },
                 "required": ["username", "email", "password"]
               }
@@ -48,15 +42,9 @@
                     "user": {
                       "type": "object",
                       "properties": {
-                        "username": {
-                          "type": "string"
-                        },
-                        "email": {
-                          "type": "string"
-                        },
-                        "subscriptionStatus": {
-                          "type": "string"
-                        }
+                        "username": { "type": "string" },
+                        "email": { "type": "string" },
+                        "subscriptionStatus": { "type": "string" }
                       }
                     }
                   }
@@ -64,12 +52,8 @@
               }
             }
           },
-          "400": {
-            "description": "User already exists"
-          },
-          "500": {
-            "description": "Server error"
-          }
+          "400": { "description": "User already exists" },
+          "500": { "description": "Server error" }
         }
       }
     },
@@ -94,27 +78,17 @@
                     "user": {
                       "type": "object",
                       "properties": {
-                        "username": {
-                          "type": "string"
-                        },
-                        "email": {
-                          "type": "string"
-                        },
-                        "subscriptionStatus": {
-                          "type": "string"
-                        }
+                        "username": { "type": "string" },
+                        "email": { "type": "string" },
+                        "subscriptionStatus": { "type": "string" }
                       }
                     },
-                    "token": {
-                      "type": "string"
-                    }
+                    "token": { "type": "string" }
                   }
                 }
               }
             },
-            "400": {
-              "description": "Authentication failed"
-            }
+            "400": { "description": "Authentication failed" }
           }
         }
       }
@@ -123,11 +97,7 @@
       "get": {
         "summary": "Get user profile",
         "description": "Fetches the profile of the authenticated user.",
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ],
+        "security": [{ "BearerAuth": [] }],
         "responses": {
           "200": {
             "description": "User profile fetched successfully",
@@ -139,15 +109,9 @@
                     "user": {
                       "type": "object",
                       "properties": {
-                        "username": {
-                          "type": "string"
-                        },
-                        "email": {
-                          "type": "string"
-                        },
-                        "subscriptionStatus": {
-                          "type": "string"
-                        }
+                        "username": { "type": "string" },
+                        "email": { "type": "string" },
+                        "subscriptionStatus": { "type": "string" }
                       }
                     }
                   }
@@ -155,12 +119,8 @@
               }
             }
           },
-          "401": {
-            "description": "Unauthorized access"
-          },
-          "500": {
-            "description": "Server error"
-          }
+          "401": { "description": "Unauthorized access" },
+          "500": { "description": "Server error" }
         }
       }
     },
@@ -178,27 +138,17 @@
                   "items": {
                     "type": "object",
                     "properties": {
-                      "planId": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
-                      "price": {
-                        "type": "number"
-                      },
-                      "duration": {
-                        "type": "string"
-                      }
+                      "planId": { "type": "string" },
+                      "name": { "type": "string" },
+                      "price": { "type": "number" },
+                      "duration": { "type": "string" }
                     }
                   }
                 }
               }
             }
           },
-          "500": {
-            "description": "Server error"
-          }
+          "500": { "description": "Server error" }
         }
       }
     },
@@ -213,12 +163,8 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "planId": {
-                    "type": "string"
-                  },
-                  "userId": {
-                    "type": "string"
-                  }
+                  "planId": { "type": "string" },
+                  "userId": { "type": "string" }
                 },
                 "required": ["planId", "userId"]
               }
@@ -233,28 +179,16 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "subscriptionId": {
-                      "type": "string"
-                    },
-                    "startDate": {
-                      "type": "string",
-                      "format": "date"
-                    },
-                    "endDate": {
-                      "type": "string",
-                      "format": "date"
-                    }
+                    "subscriptionId": { "type": "string" },
+                    "startDate": { "type": "string", "format": "date" },
+                    "endDate": { "type": "string", "format": "date" }
                   }
                 }
               }
             }
           },
-          "400": {
-            "description": "Invalid input"
-          },
-          "500": {
-            "description": "Server error"
-          }
+          "400": { "description": "Invalid input" },
+          "500": { "description": "Server error" }
         }
       }
     },
@@ -279,12 +213,8 @@
               }
             }
           },
-          "400": {
-            "description": "Invalid subscription ID"
-          },
-          "500": {
-            "description": "Server error"
-          }
+          "400": { "description": "Invalid subscription ID" },
+          "500": { "description": "Server error" }
         }
       }
     },
@@ -300,20 +230,99 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "active"
-                    }
+                    "status": { "type": "string", "example": "active" }
                   }
                 }
               }
             }
           },
-          "400": {
-            "description": "Invalid subscription ID"
+          "400": { "description": "Invalid subscription ID" },
+          "500": { "description": "Server error" }
+        }
+      }
+    },
+    "/servers": {
+      "get": {
+        "summary": "Get list of all servers",
+        "responses": {
+          "200": {
+            "description": "List of servers",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": { "type": "string" },
+                  "name": { "type": "string" },
+                  "location": { "type": "string" },
+                  "capacity": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/servers/{serverId}": {
+      "get": {
+        "summary": "Get details of a specific server",
+        "parameters": [
+          {
+            "name": "serverId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Server details",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "name": { "type": "string" },
+                "location": { "type": "string" },
+                "capacity": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/servers/{serverId}/connect": {
+      "post": {
+        "summary": "Connect to a specific server",
+        "parameters": [
+          {
+            "name": "serverId",
+            "in": "path",
+            "required": true,
+            "type": "string"
           },
-          "500": {
-            "description": "Server error"
+          {
+            "name": "userId",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Connection details",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "connectionId": { "type": "string" },
+                "ipAddress": { "type": "string" },
+                "port": { "type": "string" }
+              }
+            }
           }
         }
       }

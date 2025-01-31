@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/dbConfig');
 const userRoutes = require('./routes/userRoutes');
 const subscriptionRoutes = require('./routes/subscriptionRoutes');
+const serverRoutes = require('./routes/serverRoutes');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./docs/swagger.json');
 
@@ -21,6 +22,7 @@ require('./config/passport');
 // Routes
 app.use('/users', userRoutes);
 app.use('/subscriptions', subscriptionRoutes);
+app.use('/api', serverRoutes);
 
 // Swagger Documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
