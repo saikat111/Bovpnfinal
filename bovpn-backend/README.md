@@ -80,6 +80,7 @@ Once the application is running:
 
 You can view the API documentation in Swagger UI at the following URL:
 `http://localhost:5000/api-docs`.
+`http://localhost:5000/api-docs-ad/`
 
 The Swagger documentation includes all available routes, their parameters, and the expected responses.
 

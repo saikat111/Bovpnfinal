@@ -14,6 +14,8 @@ const adRoutes = require('./routes/adRoutes');
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./docs/swagger.json');
+const swaggerDocument2 = require('./docs/ads-swagger.json');
+
 
 dotenv.config();
 connectDB();
@@ -36,7 +38,7 @@ app.use("/feedback", feedbackRoutes);
 
 // Swagger Documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
+app.use('/api-docs-ad', swaggerUi.serve, swaggerUi.setup(swaggerDocument2));
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
