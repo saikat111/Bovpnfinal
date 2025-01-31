@@ -1,0 +1,30 @@
+# Node.js
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Environment Variables
+.env
+
+# Dependency directories
+jspm_packages/
+
+# Build output
+/dist
+/build
+/out
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# IDE settings
+.vscode/
+.idea/
+
+# NPM package lock files (Optional, if you want to regenerate them on each clone)
+package-lock.json
+yarn.lock
