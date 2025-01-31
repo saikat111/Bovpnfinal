@@ -4,6 +4,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const connectDB = require('./config/dbConfig');
 const userRoutes = require('./routes/userRoutes');
+const subscriptionRoutes = require('./routes/subscriptionRoutes');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./docs/swagger.json');
 
@@ -16,8 +17,10 @@ app.use(cors());
 app.use(passport.initialize());
 // Import Passport config
 require('./config/passport');
+
 // Routes
 app.use('/users', userRoutes);
+app.use('/subscriptions', subscriptionRoutes);
 
 // Swagger Documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
