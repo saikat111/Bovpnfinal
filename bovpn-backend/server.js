@@ -3,9 +3,15 @@ const passport = require('passport');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const connectDB = require('./config/dbConfig');
+
 const userRoutes = require('./routes/userRoutes');
 const subscriptionRoutes = require('./routes/subscriptionRoutes');
 const serverRoutes = require('./routes/serverRoutes');
+const privacyPolicyRoutes = require("./routes/privacyPolicyRoutes");
+const termsRoutes = require("./routes/termsRoutes");
+const feedbackRoutes = require("./routes/feedbackRoutes");
+const adRoutes = require('./routes/adRoutes');
+
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./docs/swagger.json');
 
@@ -23,6 +29,10 @@ require('./config/passport');
 app.use('/users', userRoutes);
 app.use('/subscriptions', subscriptionRoutes);
 app.use('/api', serverRoutes);
+app.use('/api/ads', adRoutes);
+app.use("/privacy-policy", privacyPolicyRoutes);
+app.use("/terms-of-service", termsRoutes);
+app.use("/feedback", feedbackRoutes);
 
 // Swagger Documentation
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));

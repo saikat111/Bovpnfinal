@@ -326,8 +326,91 @@
           }
         }
       }
+    },
+    "/privacy-policy": {
+      "get": {
+        "summary": "Get privacy policy",
+        "description": "Fetches the privacy policy for the service.",
+        "responses": {
+          "200": {
+            "description": "Privacy policy fetched successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "content": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "500": { "description": "Server error" }
+        }
+      }
+    },
+    "/terms-of-service": {
+      "get": {
+        "summary": "Get terms of service",
+        "description": "Fetches the terms of service for the service.",
+        "responses": {
+          "200": {
+            "description": "Terms of service fetched successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "content": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "500": { "description": "Server error" }
+        }
+      }
+    },
+    "/feedback": {
+      "post": {
+        "summary": "Submit feedback",
+        "description": "Allows users to submit feedback on the service.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "userId": { "type": "string" },
+                  "feedback": { "type": "string" }
+                },
+                "required": ["userId", "feedback"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Feedback submitted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": { "type": "string", "example": "Feedback submitted successfully" }
+                  }
+                }
+              }
+            }
+          },
+          "400": { "description": "Invalid input" },
+          "500": { "description": "Server error" }
+        }
+      }
     }
   },
+  
   "components": {
     "securitySchemes": {
       "BearerAuth": {
@@ -338,3 +421,7 @@
     }
   }
 }
+
+
+
+
