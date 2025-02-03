@@ -124,6 +124,119 @@
         }
       }
     },
+    "/ads/config": {
+      "get": {
+        "summary": "Get Ad Configuration",
+        "description": "Fetches the advertisement configuration from the database.",
+        "operationId": "getAdConfig",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully fetched ad configuration",
+            "schema": {
+              "$ref": "#/definitions/AdConfig"
+            }
+          },
+          "500": {
+            "description": "Failed to fetch ad configuration"
+          }
+        }
+      }
+    },
+    "/ads/display": {
+      "post": {
+        "summary": "Display Ad",
+        "description": "Fetches an ad based on the format and user ID.",
+        "operationId": "displayAd",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Ad format and user ID for fetching the ad.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AdRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully fetched ad",
+            "schema": {
+              "$ref": "#/definitions/Ad"
+            }
+          },
+          "400": {
+            "description": "userId and adFormat are required"
+          },
+          "500": {
+            "description": "Failed to fetch ad"
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Ad": {
+        "type": "object",
+        "properties": {
+          "format": {
+            "type": "string",
+            "description": "The ad format (e.g., 'banner', 'video', 'popup')"
+          },
+          "imageUrl": {
+            "type": "string",
+            "description": "URL of the image (optional based on ad format)"
+          },
+          "videoUrl": {
+            "type": "string",
+            "description": "URL of the video (optional based on ad format)"
+          },
+          "clickUrl": {
+            "type": "string",
+            "description": "URL to redirect when the ad is clicked"
+          },
+          "userId": {
+            "type": "string",
+            "description": "ID of the user requesting the ad"
+          }
+        }
+      },
+      "AdConfig": {
+        "type": "object",
+        "properties": {
+          "formats": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Available ad formats (e.g., 'banner', 'video', 'popup')"
+          },
+          "frequency": {
+            "type": "string",
+            "description": "Frequency for displaying ads (e.g., 'daily', 'weekly')"
+          }
+        }
+      },
+      "AdRequest": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "The ID of the user requesting the ad"
+          },
+          "adFormat": {
+            "type": "string",
+            "description": "The format of the ad (e.g., 'banner', 'video', 'popup')"
+          }
+        },
+        "required": [
+          "userId",
+          "adFormat"
+        ]
+      }
+    },
     "/subscriptions/plans": {
       "get": {
         "summary": "Get subscription plans",
