@@ -5,14 +5,14 @@ const passport = require('passport');
 // Register User
 const registerUser = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, firebaseId } = req.body;
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists' });
     }
 
-    const newUser = new User({ username, email, password });
+    const newUser = new User({ username, email, firebaseId });
     await newUser.save();
 
     res.status(201).json({
@@ -26,7 +26,7 @@ const registerUser = async (req, res) => {
 // Get User Data
 const getUserData = async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select('-password');
+    const user = await User.findById(req.userId);
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
@@ -41,8 +41,8 @@ const getUserData = async (req, res) => {
 const googleLogin = passport.authenticate('google', { scope: ['profile', 'email'] });
 
 // Google Login Callback
-const googleLoginCallback = (req, res, next) => {
-  passport.authenticate('google', { session: false }, async (err, user) => {
+const googleLoginCallback = async (req, res, next) => {
+  await passport.authenticate('google', { session: false }, async (err, user) => {
     if (err || !user) {
       return res.status(400).json({ message: 'Authentication failed' });
     }

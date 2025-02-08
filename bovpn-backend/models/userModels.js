@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
   username: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   subscriptionStatus: { type: String, default: "inactive" },
-  googleId: { type: String, required: false },
+  firebaseId: { type: String, required: false },
 });
 
 const User = mongoose.model('User', userSchema);
